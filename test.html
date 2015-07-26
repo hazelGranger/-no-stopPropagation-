@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.account,.order{
+			display: inline-block;
+			width: 30%;
+			height: 200px;
+			border: 1px solid #000;
+			margin-right: 40px;
+			cursor: pointer;
+
+		}
+	</style>
+
+</head>
+<body>
+	<div class="account">
+		<p>hahap</p>
+	</div>
+	<div class="order">
+		<p>hahap</p>
+	</div>
+</body>
+<script type="text/javascript" src="jquery-1.9.0.js"></script>
+<script>
+	$(document).ready(function(){
+
+		var $account = {
+			elmt: $('.account'),
+			changeBg: function(){
+				this.elmt.css("background","#006ec3");
+				this.elmt.data("color",true);
+			},
+			changeBgBack: function(){
+				this.elmt.css("background","#fff")
+				this.elmt.data("color",false);
+			}
+		}
+
+		var $order ={
+			elmt: $('.order'),
+			changeBg: function(){
+				this.elmt.css("background","#6ec300");
+				this.elmt.data("color",true);
+			},
+			changeBgBack: function(){
+				this.elmt.css("background","#fff");
+				this.elmt.data("color",false);
+			}
+		}
+
+		$('.account').click(function  () {
+			if (!$account.elmt.data("color")) {
+				$account.changeBg();
+			}else{
+				$account.changeBgBack();
+			}
+			
+			
+		})
+
+		$('.order').click(function  () {
+			if (!$order.elmt.data("color")) {
+				$order.changeBg();
+			}else{
+				$order.changeBgBack();
+			}
+		})
+
+		$(document).click(function(e){
+			if (!($(e.target).closest('.account').get(0)==$account.elmt.get(0))){
+				$account.changeBgBack();
+			}
+			// console.log(e.target);
+			// console.log($account.elmt.get(0));
+			// console.log($(e.target).closest('.account').get(0));
+
+			// console.log($(e.target).closest('.account').get(0)==$account.elmt.get(0));
+
+			if (!($(e.target).closest('.order').get(0)==$order.elmt.get(0))){
+				$order.changeBgBack();
+			}
+		})
+	})
+</script>
+</html>
